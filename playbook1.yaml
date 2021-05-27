@@ -1,0 +1,22 @@
+---
+## - hosts: web
+##   tasks:
+##     - name: Install NGINX
+##       apt: name=nginx state=latest update_cache=true
+
+## - hosts: metrics
+##   tasks:
+##     - name: Install Graphite
+##       apt: name=graphite-web state=latest update_cache=true
+
+- hosts: web
+  become:
+    true
+  become_method:
+    sudo
+  become_user:
+    root
+  remote_user:
+    ansible
+  roles:
+   - nginx
